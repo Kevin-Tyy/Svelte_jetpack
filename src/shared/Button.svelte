@@ -4,12 +4,12 @@
   export let inverse = false;
 
 </script>
-<button class={type} class:flat={flat} class:inverse={inverse}>
+<button class={type} class:flat={flat} class:inverse={inverse} on:click>
   <slot/>
 </button>
 <style>
   	button {
-    width: 400px;
+    width: 100%;
 		border-radius: 5px;
 		border: none;
 		padding: 12px;
