@@ -1,7 +1,8 @@
 <script>
-// @ts-nocheck
+	// @ts-nocheck
+	import { page } from '$app/stores';
+	import { beforeUpdate } from 'svelte';
 
-	import { createEventDispatcher } from 'svelte';
 	/**
 	 * @type {String[]}
 	 */
@@ -9,9 +10,11 @@
 	/**
 	 * @type {string}
 	 */
-	export let activeTab;
-	const dispatch = createEventDispatcher();
-
+	// You can access the current path using the `$page` store
+	let currentPath = $page.route.id;
+	beforeUpdate(() => {
+		currentPath = $page.route.id;
+	});
 </script>
 
 <section>
@@ -19,8 +22,8 @@
 		<ul>
 			{#each tabs as tab}
 				<li>
-					<a href={tab.link} on:click={() => dispatch('tabChange', tab)}>
-						<div class:active={activeTab === tab}>
+					<a href={tab.link}>
+						<div class:active={tab.link === currentPath}>
 							{tab.title}
 						</div>
 					</a>
@@ -34,7 +37,7 @@
 	section {
 		margin-block: 40px;
 	}
-	a{
+	a {
 		color: #555;
 		text-decoration: none;
 	}
@@ -50,8 +53,8 @@
 		cursor: pointer;
 	}
 	.active {
-		color: #d91b42;
-		border-bottom: 2px solid #d91b42;
+		color: #ff5588;
+		border-bottom: 2px solid #ff5588;
 		padding-bottom: 8px;
 	}
 </style>

@@ -8,16 +8,12 @@
 		{ title: 'Current Polls', link: '/' },
 		{ title: 'Add a new Poll', link: '/create' }
 	];
-	let activeTab = 'Current Polls';
-	const tabChange = (e) => {
-		activeTab = e.detail;
-	};
 </script>
 
 <div class="app">
 	<Header />
 	<main>
-		<Tabs {activeTab} {tabs} on:tabChange={tabChange} />
+		<Tabs  {tabs} />
 		<slot />
 	</main>
 	<Footer />

@@ -1,11 +1,17 @@
 <script>
+	//@ts-nocheck
+	
 	import Button from './Button.svelte';
   import { createEventDispatcher } from 'svelte';
+	import { goto } from '$app/navigation';
+	import pollStore from '../stores/pollStore';
   const dispatch = createEventDispatcher()
 	let fields = {
 		question: '',
 		answerA: '',
-		answerB: ''
+		answerB: '',
+		votesA : 0,
+		votesB : 0,
 	};
 	let valid = false;
 	let errors = {
@@ -38,6 +44,10 @@
 		if (valid) {
       let poll = {...fields, voteA : 0, voteB : 0,  id : Math.floor(Math.random() * 10000)}
       dispatch('add_poll', poll);
+			pollStore.update((currentData) => {
+				return [poll, ...currentData]
+			})
+			goto("/")
     }
 	};
 </script>

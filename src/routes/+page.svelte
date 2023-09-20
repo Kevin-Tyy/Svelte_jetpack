@@ -1,4 +1,5 @@
 <script>
+	import PollList from '../components/PollList.svelte';
 </script>
 
 <svelte:head>
@@ -6,7 +7,7 @@
 	<meta name="description" content="Svelte demo app" />
 </svelte:head>
 <section>
-	<h1>Hello world</h1>
+	<PollList/>
 </section>
 
 <style>
